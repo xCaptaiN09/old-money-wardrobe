@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old Money — Complete Colour Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --parchment: #f2ebe0; --parchment-dark: #e6ddd0;
+  --ink: #1e1a14; --ink-mid: #5c4f3d; --ink-light: #9a8c78;
+  --gold: #8c6d3f; --gold-light: #c4a46b; --rule: #d4c4a8; --white: #faf7f2;
+}
+body { background:var(--parchment); color:var(--ink); font-family:'Josefin Sans',sans-serif; font-weight:300; min-height:100vh; overflow-x:hidden; }
+body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+
+.masthead { position:relative; text-align:center; padding:64px 24px 48px; border-bottom:1px solid var(--rule); background:var(--white); overflow:hidden; }
+.masthead::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:60px; height:2px; background:var(--gold); }
+.masthead-ornament { font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-light); margin-bottom:18px; font-weight:200; }
+.masthead h1 { font-family:'Playfair Display',serif; font-weight:400; font-size:clamp(32px,6vw,58px); line-height:1.1; color:var(--ink); letter-spacing:-0.01em; }
+.masthead h1 em { font-style:italic; color:var(--gold); }
+.masthead-sub { margin-top:16px; font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:var(--ink-light); }
+.masthead-desc { margin-top:20px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:16px; color:var(--ink-mid); max-width:560px; margin-left:auto; margin-right:auto; line-height:1.7; }
+
+.filter-wrap { position:sticky; top:0; z-index:10; background:var(--white); border-bottom:1px solid var(--rule); }
+.filter-bar { padding:0 24px; display:flex; overflow-x:auto; scrollbar-width:none; border-bottom:1px solid var(--parchment-dark); }
+.filter-bar::-webkit-scrollbar { display:none; }
+.filter-bar-occ { padding:0 24px; display:flex; overflow-x:auto; scrollbar-width:none; background:var(--parchment); }
+.filter-bar-occ::-webkit-scrollbar { display:none; }
+.filter-btn { padding:13px 16px; font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-light); background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap; transition:color .2s,border-color .2s; font-weight:300; }
+.filter-btn:hover { color:var(--ink); }
+.filter-btn.active { color:var(--gold); border-bottom-color:var(--gold); }
+.filter-btn-occ { padding:9px 14px; font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-light); background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap; transition:color .2s,border-color .2s; font-weight:300; }
+.filter-btn-occ:hover { color:var(--ink); }
+.filter-btn-occ.active { color:#5a7a5a; border-bottom-color:#5a7a5a; }
+.filter-label { padding:9px 14px 9px 0; font-size:7.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--rule); white-space:nowrap; display:flex; align-items:center; }
+
+.main { position:relative; z-index:1; padding:0 20px 80px; max-width:1200px; margin:0 auto; }
+
+.chapter { padding-top:52px; }
+.chapter-header { display:flex; align-items:baseline; gap:16px; margin-bottom:8px; }
+.chapter-num { font-family:'Playfair Display',serif; font-style:italic; font-size:13px; color:var(--gold-light); }
+.chapter-title { font-family:'Playfair Display',serif; font-size:clamp(20px,3vw,26px); font-weight:400; color:var(--ink); letter-spacing:-0.01em; }
+.chapter-desc { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--ink-mid); margin-bottom:24px; line-height:1.6; }
+.chapter-rule { height:1px; background:linear-gradient(to right,var(--gold),transparent); margin-bottom:24px; }
+
+.combo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
+
+.card { background:var(--white); border:1px solid var(--rule); cursor:default; transition:transform .22s cubic-bezier(.25,.46,.45,.94),box-shadow .22s cubic-bezier(.25,.46,.45,.94); animation:fadeUp .4s ease both; }
+.card.occ-hidden { display:none; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(30,26,20,.12); }
+
+.swatches { display:flex; height:68px; position:relative; }
+.swatch { flex:1; position:relative; overflow:hidden; }
+.swatch:not(:last-child)::after { content:''; position:absolute; right:-1px; top:0; bottom:0; width:2px; background:rgba(242,235,224,.35); z-index:1; }
+.swatch-name { position:absolute; bottom:5px; left:0; right:0; text-align:center; font-size:7.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:400; padding:0 3px; line-height:1.3; }
+.swatch-name.light { color:rgba(255,255,255,.7); }
+.swatch-name.dark  { color:rgba(0,0,0,.4); }
+
+.card-body { padding:14px 16px 16px; border-top:1px solid var(--rule); }
+.combo-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:400; color:var(--ink); line-height:1.35; margin-bottom:4px; }
+.combo-title em { font-style:italic; color:var(--gold); }
+.combo-meta { font-size:8.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-light); margin-bottom:8px; }
+.combo-note { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:var(--ink-mid); line-height:1.55; margin-bottom:10px; }
+
+.shoe-row,.belt-row,.watch-row { display:flex; align-items:center; gap:7px; margin-bottom:6px; padding:6px 10px; background:var(--parchment); }
+.shoe-row  { border-left:2px solid var(--gold-light); }
+.belt-row  { border-left:2px solid #a08060; }
+.watch-row { border-left:2px solid #b8a878; margin-bottom:10px; }
+.shoe-label,.belt-label,.watch-label { font-size:7.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-light); flex-shrink:0; min-width:38px; }
+.shoe-chips,.belt-chips,.watch-chips { display:flex; flex-wrap:wrap; gap:4px; }
+.shoe-chip,.belt-chip,.watch-chip { display:flex; align-items:center; gap:4px; font-size:7.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mid); }
+.shoe-dot,.belt-dot,.watch-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; border:1px solid rgba(0,0,0,.1); }
+.shoe-chip:not(:last-child)::after,.belt-chip:not(:last-child)::after,.watch-chip:not(:last-child)::after { content:'·'; color:var(--rule); margin-left:4px; }
+
+.fabric-guide { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.fabric-card { background:var(--white); border:1px solid var(--rule); padding:16px 18px 18px; }
+.fabric-season { font-size:8px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+.fabric-name { font-family:'Playfair Display',serif; font-size:16px; font-weight:400; color:var(--ink); margin-bottom:8px; }
+.fabric-fabrics span { display:inline-block; background:var(--parchment); border:1px solid var(--rule); padding:2px 7px; margin:2px 2px 0 0; font-size:8px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mid); }
+.fabric-note { margin-top:10px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:12.5px; color:var(--ink-light); line-height:1.55; }
+
+.tags { display:flex; flex-wrap:wrap; gap:5px; }
+.tag { font-size:7.5px; letter-spacing:.15em; text-transform:uppercase; padding:3px 7px; border:1px solid var(--rule); color:var(--ink-light); background:var(--parchment); }
+.tag.mine   { border-color:var(--gold); color:var(--gold); background:rgba(140,109,63,.06); }
+.tag.next   { border-color:#5a7a5a; color:#5a7a5a; background:rgba(90,122,90,.06); }
+.tag.strong { border-color:#5a5a7a; color:#5a5a7a; background:rgba(90,90,122,.06); }
+.tag.occ-casual  { border-color:#8a7a5a; color:#8a7a5a; }
+.tag.occ-smart   { border-color:#5a6a7a; color:#5a6a7a; }
+.tag.occ-formal  { border-color:#4a4a5a; color:#4a4a5a; }
+.tag.occ-evening { border-color:#6a3a4a; color:#6a3a4a; }
+
+.palette-strip { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; padding:20px; background:var(--white); border:1px solid var(--rule); }
+.palette-chip { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.chip-swatch { width:44px; height:44px; border:1px solid rgba(0,0,0,.07); }
+.chip-name { font-size:7.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-light); text-align:center; max-width:52px; line-height:1.4; }
+
+.avoid-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; }
+.avoid-card { border:1px dashed #d4bfa8; padding:12px; display:flex; align-items:center; gap:10px; background:var(--white); }
+.avoid-swatch { width:30px; height:30px; flex-shrink:0; border:1px solid rgba(0,0,0,.08); }
+.avoid-text .name { font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mid); line-height:1.3; }
+.avoid-text .reason { font-size:9px; color:var(--ink-light); font-family:'Cormorant Garamond',serif; font-style:italic; margin-top:2px; }
+
+footer { text-align:center; margin-top:72px; padding:28px 24px; border-top:1px solid var(--rule); font-size:8.5px; letter-spacing:.25em; text-transform:uppercase; color:var(--rule); }
+
+.chapter.hidden { display:none; }
+.season { display:inline-block; font-size:7.5px; letter-spacing:.15em; text-transform:uppercase; padding:2px 6px; margin-left:8px; vertical-align:middle; }
+.s-all  { background:#e8e0d0; color:#7a6a54; }
+.s-warm { background:#f0e6d0; color:#8a6a40; }
+.s-cold { background:#dde4e8; color:#4a6070; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-ornament">Men's Wardrobe · Complete Reference</div>
+  <h1>Old Money<br><em>Colour Combinations</em></h1>
+  <div class="masthead-sub">Earth · Muted · Natural · Timeless</div>
+  <p class="masthead-desc">Every legitimate combination within the old money palette — with shoe, belt, watch guidance and a complete fabric reference by season.</p>
+</div>
+
+<div class="filter-wrap">
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterSection('all',this)">All</button>
+    <button class="filter-btn" onclick="filterSection('earth',this)">Earth Tones</button>
+    <button class="filter-btn" onclick="filterSection('grey',this)">Grey Axis</button>
+    <button class="filter-btn" onclick="filterSection('navy',this)">Navy & Forest</button>
+    <button class="filter-btn" onclick="filterSection('camel',this)">Camel & Sand</button>
+    <button class="filter-btn" onclick="filterSection('autumn',this)">Autumn Depth</button>
+    <button class="filter-btn" onclick="filterSection('layer',this)">Layering</button>
+    <button class="filter-btn" onclick="filterSection('avoid',this)">Avoid</button>
+    <button class="filter-btn" onclick="filterSection('fabric',this)">Fabrics</button>
+  </div>
+  <div class="filter-bar-occ">
+    <span class="filter-label">Occasion →</span>
+    <button class="filter-btn-occ active" onclick="filterOcc('all',this)">All</button>
+    <button class="filter-btn-occ" onclick="filterOcc('casual',this)">Casual</button>
+    <button class="filter-btn-occ" onclick="filterOcc('smart',this)">Smart Casual</button>
+    <button class="filter-btn-occ" onclick="filterOcc('formal',this)">Formal</button>
+    <button class="filter-btn-occ" onclick="filterOcc('evening',this)">Evening</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- MASTER PALETTE -->
+<div class="chapter" id="sec-all-palette" style="padding-top:40px;">
+  <div class="chapter-header"><span class="chapter-num">—</span><span class="chapter-title">The Complete Old Money Palette</span></div>
+  <p class="chapter-desc">Every colour that belongs in this aesthetic. All combinations draw exclusively from these tones.</p>
+  <div class="chapter-rule"></div>
+  <div class="palette-strip">
+    <div class="palette-chip"><div class="chip-swatch" style="background:#faf7f2;"></div><div class="chip-name">Ivory</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#f2ead8;"></div><div class="chip-name">Cream</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#ede5cc;"></div><div class="chip-name">Ecru</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#f0ece0;"></div><div class="chip-name">Off-White</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#e2d5b8;"></div><div class="chip-name">Sand</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#d4c4a0;"></div><div class="chip-name">Wheat</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#c8b49a;"></div><div class="chip-name">Beige</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#c2a882;"></div><div class="chip-name">Khaki</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#c8a454;"></div><div class="chip-name">Camel</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#b08060;"></div><div class="chip-name">Tan</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#a0724a;"></div><div class="chip-name">Light Brown</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#7d5a3c;"></div><div class="chip-name">Brown</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#6b4226;"></div><div class="chip-name">Choco Brown</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#4a2e1a;"></div><div class="chip-name">Dark Brown</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#b85c38;"></div><div class="chip-name">Rust</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#c4703a;"></div><div class="chip-name">Terracotta</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#9a7820;"></div><div class="chip-name">Mustard</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#7a2030;"></div><div class="chip-name">Burgundy</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#4a5240;"></div><div class="chip-name">Olive</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#3a4a38;"></div><div class="chip-name">Dark Olive</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#2d4a2d;"></div><div class="chip-name">Forest Green</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#3a5a40;"></div><div class="chip-name">Hunter Green</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#b8b0a4;"></div><div class="chip-name">Light Grey</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#7a8080;"></div><div class="chip-name">Slate Grey</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#6b6b5a;"></div><div class="chip-name">Warm Grey</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#3d3d3a;"></div><div class="chip-name">Charcoal</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#1e2d40;"></div><div class="chip-name">Navy</div></div>
+    <div class="palette-chip"><div class="chip-swatch" style="background:#2a3d54;"></div><div class="chip-name">Midnight Blue</div></div>
+  </div>
+</div>
+
+<!-- FABRIC GUIDE -->
+<div class="chapter" data-section="fabric" id="sec-fabric" style="padding-top:44px;">
+  <div class="chapter-header"><span class="chapter-num">—</span><span class="chapter-title">Fabric Guide by Season</span></div>
+  <p class="chapter-desc">Old money is as much about texture as colour. The right fabric makes the outfit — the wrong one breaks it regardless of how good the colours are.</p>
+  <div class="chapter-rule"></div>
+  <div class="fabric-guide">
+
+    <div class="fabric-card">
+      <div class="fabric-season">Summer · Hot Weather</div>
+      <div class="fabric-name">Linen</div>
+      <div class="fabric-fabrics"><span>Linen</span><span>Linen-Cotton</span><span>Seersucker</span><span>Gauze</span></div>
+      <div class="fabric-note">The primary old money summer fabric. Wrinkles are acceptable — intentional even. Never iron linen flat. Loose weave, breathable, drops beautifully over Gurkha silhouettes.</div>
+    </div>
+
+    <div class="fabric-card">
+      <div class="fabric-season">Spring · Mild Weather</div>
+      <div class="fabric-name">Cotton & Oxford</div>
+      <div class="fabric-fabrics"><span>Oxford Cloth</span><span>Poplin</span><span>Chino Twill</span><span>Cotton Canvas</span></div>
+      <div class="fabric-note">Structured but breathable. Oxford cloth shirts are the backbone of the smart casual old money wardrobe. Chino twill for trousers gives shape without heaviness.</div>
+    </div>
+
+    <div class="fabric-card">
+      <div class="fabric-season">Autumn · Transitional</div>
+      <div class="fabric-name">Flannel & Corduroy</div>
+      <div class="fabric-fabrics"><span>Flannel</span><span>Corduroy</span><span>Moleskin</span><span>Heavy Cotton</span></div>
+      <div class="fabric-note">Flannel trousers are one of the most old money pieces in existence. Corduroy reads heritage and country. Both carry texture that photographs and ages well.</div>
+    </div>
+
+    <div class="fabric-card">
+      <div class="fabric-season">Winter · Cold Weather</div>
+      <div class="fabric-name">Wool & Tweed</div>
+      <div class="fabric-fabrics"><span>Tweed</span><span>Merino Wool</span><span>Lambswool</span><span>Cashmere</span><span>Herringbone</span></div>
+      <div class="fabric-note">Tweed is the single most heritage-coded fabric in old money menswear. Merino and lambswool for knitwear only — no synthetic blends. Cashmere for overcoats and scarves.</div>
+    </div>
+
+    <div class="fabric-card">
+      <div class="fabric-season">All Season · Avoid</div>
+      <div class="fabric-name">Never Use</div>
+      <div class="fabric-fabrics"><span>Polyester</span><span>Nylon</span><span>Rayon</span><span>Spandex</span><span>Acrylic</span></div>
+      <div class="fabric-note">Synthetic fabrics don't drape, don't breathe, and don't age well. They look cheap under light and feel wrong against natural fabrics. None of these belong in this wardrobe regardless of colour.</div>
+    </div>
+
+    <div class="fabric-card">
+      <div class="fabric-season">Footwear & Accessories</div>
+      <div class="fabric-name">Leather & Suede</div>
+      <div class="fabric-fabrics"><span>Full-grain Leather</span><span>Suede</span><span>Calfskin</span><span>Canvas (casual)</span></div>
+      <div class="fabric-note">Shoes and belts must be full-grain leather or suede — no bonded leather, no synthetic uppers. Suede reads more casual and heritage. Polished leather reads more formal. Both work across this wardrobe.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- I EARTH -->
+<div class="chapter" data-section="earth">
+  <div class="chapter-header"><span class="chapter-num">I</span><span class="chapter-title">Core Earth Tones</span><span class="season s-all">All Season</span></div>
+  <p class="chapter-desc">The foundation of the aesthetic. Warm, natural, aged. Every wardrobe starts here.</p>
+  <div class="chapter-rule"></div>
+  <div class="combo-grid">
+
+    <div class="card" data-occ="smart casual">
+      <div class="swatches"><div class="swatch" style="background:#3a4a38;"><span class="swatch-name light">Dark Olive</span></div><div class="swatch" style="background:#f0ece0;"><span class="swatch-name dark">Off-White</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Dark Olive <em>×</em> Off-White</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">High contrast within the earthy register. Olive shirt over near-white linen trouser.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag mine">Your Wardrobe</span><span class="tag occ-smart">Smart Casual</span><span class="tag">Summer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart casual">
+      <div class="swatches"><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige</span></div><div class="swatch" style="background:#6b4226;"><span class="swatch-name light">Brown</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Beige <em>×</em> Chocolate Brown</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Quintessential earth pairing. Tonal without being boring.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag mine">Your Wardrobe</span><span class="tag occ-smart">Smart Casual</span><span class="tag">Versatile</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual">
+      <div class="swatches"><div class="swatch" style="background:#7d5a3c;"><span class="swatch-name light">Brown</span></div><div class="swatch" style="background:#e2d5b8;"><span class="swatch-name dark">Sand Linen</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Brown <em>×</em> Sand Linen</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Darker top reads grounded. Sand bottom keeps it summery.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#e8e0c8;"></span>White Canvas</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag mine">Your Wardrobe</span><span class="tag occ-casual">Casual</span><span class="tag">Weekend</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#a0724a;"><span class="swatch-name light">Light Brown</span></div><div class="swatch" style="background:#4a2e1a;"><span class="swatch-name light">Dark Brown</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Light Brown <em>×</em> Dark Brown</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Monochromatic depth. Works best when textures differ.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Chelsea Boot</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag mine">Your Wardrobe</span><span class="tag occ-smart">Smart Casual</span><span class="tag">Tonal</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart casual">
+      <div class="swatches"><div class="swatch" style="background:#f2ead8;"><span class="swatch-name dark">Cream</span></div><div class="swatch" style="background:#4a5240;"><span class="swatch-name light">Olive</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Cream <em>×</em> Olive</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Inverted version of the olive-white pair. Cream top reads lighter, more refined.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Summer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual">
+      <div class="swatches"><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige</span></div><div class="swatch" style="background:#4a5240;"><span class="swatch-name light">Olive</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Beige <em>×</em> Olive</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Warm neutrals together. Low contrast but inherently cohesive.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#e8e0c8;"></span>White Canvas</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Spring</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart casual">
+      <div class="swatches"><div class="swatch" style="background:#d4c4a0;"><span class="swatch-name dark">Wheat</span></div><div class="swatch" style="background:#7d5a3c;"><span class="swatch-name light">Brown</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Wheat <em>×</em> Brown</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Harvest palette. A linen wheat shirt over brown Gurkha trousers is exceptional.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Gurkha</span><span class="tag">Summer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual">
+      <div class="swatches"><div class="swatch" style="background:#c2a882;"><span class="swatch-name dark">Khaki</span></div><div class="swatch" style="background:#4a2e1a;"><span class="swatch-name light">Dark Brown</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Khaki <em>×</em> Dark Brown</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Khaki is underrated. This reads like a weekend in the countryside.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Chelsea Boot</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Heritage</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual">
+      <div class="swatches"><div class="swatch" style="background:#c2a882;"><span class="swatch-name dark">Khaki</span></div><div class="swatch" style="background:#4a5240;"><span class="swatch-name light">Olive</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Khaki <em>×</em> Olive</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Military-adjacent but very much old money when worn in linen or chino.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#e8e0c8;"></span>White Canvas</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Spring/Summer</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- II GREY -->
+<div class="chapter" data-section="grey">
+  <div class="chapter-header"><span class="chapter-num">II</span><span class="chapter-title">The Grey Axis</span><span class="season s-all">All Season</span></div>
+  <p class="chapter-desc">Grey is the cool-neutral anchor that prevents the palette from becoming too warm.</p>
+  <div class="chapter-rule"></div>
+  <div class="combo-grid">
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#f2ead8;"><span class="swatch-name dark">Cream</span></div><div class="swatch" style="background:#7a8080;"><span class="swatch-name light">Slate Grey</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Cream <em>×</em> Slate Grey</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Warm-cool balance. Gurkha trousers in slate grey elevate this immediately.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag next">Recommended</span><span class="tag occ-smart">Smart Casual</span><span class="tag">Versatile</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#4a5240;"><span class="swatch-name light">Olive</span></div><div class="swatch" style="background:#7a8080;"><span class="swatch-name light">Slate Grey</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Olive <em>×</em> Slate Grey</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Military heritage meets tailored restraint. One of the strongest pairings on this chart.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag strong">Strong</span><span class="tag occ-smart">Smart Casual</span><span class="tag">Four Season</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#6b6b5a;"><span class="swatch-name light">Warm Grey</span></div><div class="swatch" style="background:#c8a454;"><span class="swatch-name dark">Camel</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Warm Grey <em>×</em> Camel</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Sophisticated tonal layering. Camel trousers are peak old money silhouette.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-formal">Formal</span><span class="tag">Refined</span><span class="tag">Autumn</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="formal evening">
+      <div class="swatches"><div class="swatch" style="background:#3d3d3a;"><span class="swatch-name light">Charcoal</span></div><div class="swatch" style="background:#ede5cc;"><span class="swatch-name dark">Ecru</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Charcoal <em>×</em> Ecru</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Charcoal is the darkest acceptable tone. Ecru keeps warmth in the bottom half.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-formal">Formal</span><span class="tag occ-evening">Evening</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart">
+      <div class="swatches"><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige</span></div><div class="swatch" style="background:#7a8080;"><span class="swatch-name light">Slate Grey</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Beige <em>×</em> Slate Grey</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Understated and clean. Linen beige shirt tucked into slate Gurkha trousers.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Minimalist</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart evening">
+      <div class="swatches"><div class="swatch" style="background:#d4c4a0;"><span class="swatch-name dark">Wheat</span></div><div class="swatch" style="background:#3d3d3a;"><span class="swatch-name light">Charcoal</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Wheat <em>×</em> Charcoal</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Warm top against dark bottom. Feels dressed without being stiff.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Chelsea Boot</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-evening">Evening</span><span class="tag">Dinner</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart">
+      <div class="swatches"><div class="swatch" style="background:#7a8080;"><span class="swatch-name light">Slate Grey</span></div><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Slate Grey <em>×</em> Beige</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Grey shirt over beige linen trouser. Flips the usual formula — very clean.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Clean</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#b8b0a4;"><span class="swatch-name dark">Light Grey</span></div><div class="swatch" style="background:#4a2e1a;"><span class="swatch-name light">Dark Brown</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Light Grey <em>×</em> Dark Brown</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Grey keeps it cool without losing the warmth of the dark brown trouser.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Chelsea Boot</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Autumn</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- III NAVY & FOREST -->
+<div class="chapter" data-section="navy">
+  <div class="chapter-header"><span class="chapter-num">III</span><span class="chapter-title">Navy & Forest Green</span><span class="season s-cold">Autumn · Winter</span></div>
+  <p class="chapter-desc">The dark anchors of the palette. Both tones carry heritage weight — naval, military, and estate associations.</p>
+  <div class="chapter-rule"></div>
+  <div class="combo-grid">
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#1e2d40;"><span class="swatch-name light">Navy</span></div><div class="swatch" style="background:#c8a454;"><span class="swatch-name dark">Camel</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Navy <em>×</em> Camel</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Classic Ivy League. Navy blazer over camel chinos is an institution, not a trend.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag strong">Iconic</span><span class="tag occ-smart">Smart Casual</span><span class="tag">Ivy League</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#1e2d40;"><span class="swatch-name light">Navy</span></div><div class="swatch" style="background:#f2ead8;"><span class="swatch-name dark">Cream</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Navy <em>×</em> Cream</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Nautical in origin, estate in execution. Worn in linen it loses all stiffness.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#e8e0c8;"></span>White Canvas</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Summer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart">
+      <div class="swatches"><div class="swatch" style="background:#1e2d40;"><span class="swatch-name light">Navy</span></div><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Navy <em>×</em> Beige</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Warmer version of navy-cream. Beige chinos or linen trousers both work.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Versatile</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="formal evening">
+      <div class="swatches"><div class="swatch" style="background:#1e2d40;"><span class="swatch-name light">Navy</span></div><div class="swatch" style="background:#7a8080;"><span class="swatch-name light">Slate Grey</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Navy <em>×</em> Slate Grey</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Cool-toned pair. Both tones recede — the silhouette carries this.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-formal">Formal</span><span class="tag occ-evening">Evening</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#2d4a2d;"><span class="swatch-name light">Forest Green</span></div><div class="swatch" style="background:#ede5cc;"><span class="swatch-name dark">Ivory</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Forest Green <em>×</em> Ivory</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Country estate energy. Forest green is richer and more formal than olive.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Countryside</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#2d4a2d;"><span class="swatch-name light">Forest Green</span></div><div class="swatch" style="background:#c8a454;"><span class="swatch-name dark">Camel</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Forest Green <em>×</em> Camel</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Rich and grounded. Camel bridges forest green back into the warm palette.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag strong">Strong</span><span class="tag occ-smart">Smart Casual</span><span class="tag">Autumn</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual">
+      <div class="swatches"><div class="swatch" style="background:#3a5a40;"><span class="swatch-name light">Hunter Green</span></div><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Hunter Green <em>×</em> Beige</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Field and estate. Hunter green shirt over beige linen is effortless.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Countryside</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- IV CAMEL & SAND -->
+<div class="chapter" data-section="camel">
+  <div class="chapter-header"><span class="chapter-num">IV</span><span class="chapter-title">Camel, Sand & Khaki</span><span class="season s-warm">Spring · Summer</span></div>
+  <p class="chapter-desc">The warmest, lightest end of the palette. These tones pair upward into darks and downward into creams with equal ease.</p>
+  <div class="chapter-rule"></div>
+  <div class="combo-grid">
+
+    <div class="card" data-occ="formal smart">
+      <div class="swatches"><div class="swatch" style="background:#c8a454;"><span class="swatch-name dark">Camel</span></div><div class="swatch" style="background:#4a2e1a;"><span class="swatch-name light">Dark Brown</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Camel <em>×</em> Dark Brown</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Rich tonal depth. Gurkha trousers in dark brown with a camel shirt is exceptional.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-formal">Formal</span><span class="tag">Gurkha</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#c8a454;"><span class="swatch-name dark">Camel</span></div><div class="swatch" style="background:#7a8080;"><span class="swatch-name light">Slate Grey</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Camel <em>×</em> Slate Grey</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Warm-cool tension done right. Clean and polished without effort.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Year Round</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#e2d5b8;"><span class="swatch-name dark">Sand</span></div><div class="swatch" style="background:#4a5240;"><span class="swatch-name light">Olive</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Sand <em>×</em> Olive</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Inverted version of olive-white. Sand top reads lighter and more summery.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#e8e0c8;"></span>White Canvas</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Summer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#e2d5b8;"><span class="swatch-name dark">Sand</span></div><div class="swatch" style="background:#1e2d40;"><span class="swatch-name light">Navy</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Sand <em>×</em> Navy</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Casual read of the navy-camel formula. Sand is lighter and more relaxed.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Summer</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#c2a882;"><span class="swatch-name dark">Khaki</span></div><div class="swatch" style="background:#1e2d40;"><span class="swatch-name light">Navy</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Khaki <em>×</em> Navy</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">The other classic Ivy formula. As established as it gets.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag strong">Ivy Classic</span><span class="tag occ-smart">Smart Casual</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart evening">
+      <div class="swatches"><div class="swatch" style="background:#c2a882;"><span class="swatch-name dark">Khaki</span></div><div class="swatch" style="background:#3d3d3a;"><span class="swatch-name light">Charcoal</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Khaki <em>×</em> Charcoal</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Warm-dark. Charcoal grounds the khaki. Works in any season.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Chelsea Boot</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Four Season</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- V AUTUMN DEPTH -->
+<div class="chapter" data-section="autumn">
+  <div class="chapter-header"><span class="chapter-num">V</span><span class="chapter-title">Autumn Depth</span><span class="season s-cold">Autumn · Winter</span></div>
+  <p class="chapter-desc">Rust, terracotta, mustard, and burgundy — the richer, darker tones that define the cold-weather old money wardrobe.</p>
+  <div class="chapter-rule"></div>
+  <div class="combo-grid">
+
+    <div class="card" data-occ="casual">
+      <div class="swatches"><div class="swatch" style="background:#b85c38;"><span class="swatch-name light">Rust</span></div><div class="swatch" style="background:#4a2e1a;"><span class="swatch-name light">Dark Brown</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Rust <em>×</em> Dark Brown</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Deep autumn heat. Rust shirt over dark brown linen trouser reads like fallen leaves.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Chelsea Boot</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Autumn</span><span class="tag">Heritage</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#b85c38;"><span class="swatch-name light">Rust</span></div><div class="swatch" style="background:#7a8080;"><span class="swatch-name light">Slate Grey</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Rust <em>×</em> Slate Grey</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Warm-cool contrast. The grey cools the rust without killing its character.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag strong">Strong</span><span class="tag occ-smart">Smart Casual</span><span class="tag">Autumn</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#b85c38;"><span class="swatch-name light">Rust</span></div><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Rust <em>×</em> Beige</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Soft landing for rust. Beige neutralises without draining the warmth.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Weekend</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="formal evening smart">
+      <div class="swatches"><div class="swatch" style="background:#c4703a;"><span class="swatch-name light">Terracotta</span></div><div class="swatch" style="background:#3d3d3a;"><span class="swatch-name light">Charcoal</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Terracotta <em>×</em> Charcoal</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Bold but grounded. One of the most striking pairings on this chart.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag strong">Bold</span><span class="tag occ-formal">Formal</span><span class="tag occ-evening">Evening</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#c4703a;"><span class="swatch-name light">Terracotta</span></div><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Terracotta <em>×</em> Beige</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Sun-baked Mediterranean palette within an old money frame.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Warm</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#9a7820;"><span class="swatch-name light">Mustard</span></div><div class="swatch" style="background:#4a2e1a;"><span class="swatch-name light">Dark Brown</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Mustard <em>×</em> Dark Brown</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Deep autumnal warmth. Muted mustard only — not bright yellow.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Autumn</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart evening">
+      <div class="swatches"><div class="swatch" style="background:#9a7820;"><span class="swatch-name light">Mustard</span></div><div class="swatch" style="background:#3d3d3a;"><span class="swatch-name light">Charcoal</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Mustard <em>×</em> Charcoal</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Charcoal makes mustard look intentional rather than accidental.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Chelsea Boot</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag occ-evening">Evening</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#9a7820;"><span class="swatch-name light">Mustard</span></div><div class="swatch" style="background:#4a5240;"><span class="swatch-name light">Olive</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Mustard <em>×</em> Olive</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Both warm earth tones but distinct enough to read as a pairing, not a clash.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-casual">Casual</span><span class="tag">Heritage</span><span class="tag">Autumn</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="formal evening">
+      <div class="swatches"><div class="swatch" style="background:#7a2030;"><span class="swatch-name light">Burgundy</span></div><div class="swatch" style="background:#c8a454;"><span class="swatch-name dark">Camel</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Burgundy <em>×</em> Camel</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Rich and aristocratic. One of the most old money combinations in existence.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag strong">Aristocratic</span><span class="tag occ-formal">Formal</span><span class="tag">Winter</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="formal evening">
+      <div class="swatches"><div class="swatch" style="background:#7a2030;"><span class="swatch-name light">Burgundy</span></div><div class="swatch" style="background:#7a8080;"><span class="swatch-name light">Slate Grey</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Burgundy <em>×</em> Slate Grey</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Cool-dark grey cools the warmth of burgundy. Refined and slightly formal.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-formal">Formal</span><span class="tag">Winter</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="casual smart">
+      <div class="swatches"><div class="swatch" style="background:#7a2030;"><span class="swatch-name light">Burgundy</span></div><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Burgundy <em>×</em> Beige</div><div class="combo-meta">Top × Bottom</div>
+        <div class="combo-note">Warmer and more relaxed than burgundy-grey. Good for daytime in winter.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Winter</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- VI LAYERING -->
+<div class="chapter" data-section="layer">
+  <div class="chapter-header"><span class="chapter-num">VI</span><span class="chapter-title">Three-Piece Layering</span><span class="season s-cold">Smart · Formal</span></div>
+  <p class="chapter-desc">Blazer, shirt, and trouser combinations. Use textures to differentiate every layer.</p>
+  <div class="chapter-rule"></div>
+  <div class="combo-grid">
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#1e2d40;"><span class="swatch-name light">Navy Blazer</span></div><div class="swatch" style="background:#f2ead8;"><span class="swatch-name dark">Cream Shirt</span></div><div class="swatch" style="background:#c8a454;"><span class="swatch-name dark">Camel Trouser</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Navy <em>+</em> Cream <em>+</em> Camel</div><div class="combo-meta">Blazer + Shirt + Trouser</div>
+        <div class="combo-note">The definitive old money three-piece. Every element is canonical.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag strong">Iconic</span><span class="tag occ-formal">Formal</span><span class="tag">Year Round</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart">
+      <div class="swatches"><div class="swatch" style="background:#6b5a3a;"><span class="swatch-name light">Tan Blazer</span></div><div class="swatch" style="background:#faf7f2;"><span class="swatch-name dark">Ivory Shirt</span></div><div class="swatch" style="background:#7a8080;"><span class="swatch-name light">Grey Trouser</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Tan <em>+</em> Ivory <em>+</em> Slate Grey</div><div class="combo-meta">Blazer + Shirt + Trouser</div>
+        <div class="combo-note">Warmer and less formal than navy. Garden party standard.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Summer</span><span class="tag">Garden Party</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="formal evening">
+      <div class="swatches"><div class="swatch" style="background:#3d3d3a;"><span class="swatch-name light">Charcoal Blazer</span></div><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige Shirt</span></div><div class="swatch" style="background:#6b4226;"><span class="swatch-name light">Brown Trouser</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Charcoal <em>+</em> Beige <em>+</em> Brown</div><div class="combo-meta">Blazer + Shirt + Trouser</div>
+        <div class="combo-note">Beige shirt bridges the dark blazer and warm trouser without conflict.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-formal">Formal</span><span class="tag occ-evening">Evening</span><span class="tag">Autumn/Winter</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#2d4a2d;"><span class="swatch-name light">Forest Jacket</span></div><div class="swatch" style="background:#ede5cc;"><span class="swatch-name dark">Ivory Shirt</span></div><div class="swatch" style="background:#c8a454;"><span class="swatch-name dark">Camel Trouser</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Forest <em>+</em> Ivory <em>+</em> Camel</div><div class="combo-meta">Jacket + Shirt + Trouser</div>
+        <div class="combo-note">Country estate look. Tweed or moleskin jacket in forest makes this exceptional.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag strong">Country</span><span class="tag occ-smart">Smart Casual</span><span class="tag">Heritage</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart casual">
+      <div class="swatches"><div class="swatch" style="background:#4a5240;"><span class="swatch-name light">Olive Jacket</span></div><div class="swatch" style="background:#f2ead8;"><span class="swatch-name dark">Cream Shirt</span></div><div class="swatch" style="background:#c8b49a;"><span class="swatch-name dark">Beige Trouser</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Olive <em>+</em> Cream <em>+</em> Beige</div><div class="combo-meta">Jacket + Shirt + Trouser</div>
+        <div class="combo-note">Tonal gradient from dark to light. Linen through all three pieces is the ideal execution.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#b08060;"></span>Tan Loafer</span><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span><span class="watch-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Leather Strap</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Summer</span><span class="tag">Tonal</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="formal evening">
+      <div class="swatches"><div class="swatch" style="background:#7a2030;"><span class="swatch-name light">Burgundy Blazer</span></div><div class="swatch" style="background:#ede5cc;"><span class="swatch-name dark">Ecru Shirt</span></div><div class="swatch" style="background:#3d3d3a;"><span class="swatch-name light">Charcoal Trouser</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Burgundy <em>+</em> Ecru <em>+</em> Charcoal</div><div class="combo-meta">Blazer + Shirt + Trouser</div>
+        <div class="combo-note">Dinner-ready. The most formal combination that isn't a suit.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-formal">Formal</span><span class="tag occ-evening">Evening</span><span class="tag">Dinner</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-occ="smart formal">
+      <div class="swatches"><div class="swatch" style="background:#6b6b5a;"><span class="swatch-name light">Warm Grey Blazer</span></div><div class="swatch" style="background:#d4c4a0;"><span class="swatch-name dark">Wheat Shirt</span></div><div class="swatch" style="background:#6b4226;"><span class="swatch-name light">Brown Trouser</span></div></div>
+      <div class="card-body">
+        <div class="combo-title">Warm Grey <em>+</em> Wheat <em>+</em> Brown</div><div class="combo-meta">Blazer + Shirt + Trouser</div>
+        <div class="combo-note">Gradient from cool to warm. The grey blazer anchors the earth tones beneath.</div>
+        <div class="shoe-row"><span class="shoe-label">Shoes</span><div class="shoe-chips"><span class="shoe-chip"><span class="shoe-dot" style="background:#5c3a1e;"></span>Dark Brown Suede</span><span class="shoe-chip"><span class="shoe-dot" style="background:#7d5a3c;"></span>Brown Oxford</span></div></div>
+<div class="belt-row"><span class="belt-label">Belt</span><div class="belt-chips"><span class="belt-chip"><span class="shoe-dot" style="background:#4a2e1a;"></span>Dark Brown Leather</span></div></div>
+<div class="watch-row"><span class="watch-label">Watch</span><div class="watch-chips"><span class="watch-chip"><span class="shoe-dot" style="background:#c4a46b;"></span>Datejust Two-Tone</span></div></div>
+        <div class="tags"><span class="tag occ-smart">Smart Casual</span><span class="tag">Autumn</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- VII AVOID -->
+<div class="chapter" data-section="avoid">
+  <div class="chapter-header"><span class="chapter-num">VII</span><span class="chapter-title">Colours to Avoid</span></div>
+  <p class="chapter-desc">These tones break the natural, muted logic the entire palette is built on.</p>
+  <div class="chapter-rule"></div>
+  <div class="avoid-grid">
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#111;"></div><div class="avoid-text"><div class="name">Black</div><div class="reason">Too stark, zero warmth</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#fff;border:1px solid #ddd;"></div><div class="avoid-text"><div class="name">Bright White</div><div class="reason">Use cream or ivory</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#2d6bb5;"></div><div class="avoid-text"><div class="name">Bright Blue</div><div class="reason">Use navy only</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#d42b2b;"></div><div class="avoid-text"><div class="name">Red</div><div class="reason">No natural grounding</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#6a0dad;"></div><div class="avoid-text"><div class="name">Purple</div><div class="reason">No heritage association</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#f07820;"></div><div class="avoid-text"><div class="name">Bright Orange</div><div class="reason">Use terracotta instead</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#d4e040;"></div><div class="avoid-text"><div class="name">Neon / Lime</div><div class="reason">Antithetical to every principle</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#1ab57a;"></div><div class="avoid-text"><div class="name">Bright Green</div><div class="reason">Keep greens dark and muted</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#e8c0e0;"></div><div class="avoid-text"><div class="name">Pink / Blush</div><div class="reason">No heritage grounding</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#607090;"></div><div class="avoid-text"><div class="name">Steel Blue / Teal</div><div class="reason">Too modern and corporate</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#c0c0c0;"></div><div class="avoid-text"><div class="name">Silver / Light Grey</div><div class="reason">Use warm grey instead</div></div></div>
+    <div class="avoid-card"><div class="avoid-swatch" style="background:#f0d0a0;"></div><div class="avoid-text"><div class="name">Bright Yellow</div><div class="reason">Use muted mustard only</div></div></div>
+  </div>
+</div>
+
+</div>
+
+<footer>Old Money Men's Wardrobe · Complete Colour Reference &nbsp;·&nbsp; <span style="color:var(--gold-light);letter-spacing:0.18em;">xCaptaiN09</span></footer>
+
+<script>
+// ── Section & Occasion filters ──────────────────────────────────────────
+let currentSection = 'all';
+let currentOcc = 'all';
+
+function filterSection(key, btn) {
+  currentSection = key;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function filterOcc(key, btn) {
+  currentOcc = key;
+  document.querySelectorAll('.filter-btn-occ').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  const chapters = document.querySelectorAll('.chapter[data-section]');
+  const paletteStrip = document.getElementById('sec-all-palette');
+  const fabricGuide = document.querySelector('.chapter[data-section="fabric"]');
+
+  if (currentSection === 'all') {
+    chapters.forEach(c => c.classList.remove('hidden'));
+    if (paletteStrip) paletteStrip.style.display = '';
+  } else if (currentSection === 'fabric') {
+    if (paletteStrip) paletteStrip.style.display = 'none';
+    chapters.forEach(c => {
+      c.classList.toggle('hidden', c.dataset.section !== 'fabric');
+    });
+  } else {
+    if (paletteStrip) paletteStrip.style.display = 'none';
+    chapters.forEach(c => {
+      c.classList.toggle('hidden', c.dataset.section !== currentSection);
+    });
+  }
+
+  document.querySelectorAll('.card[data-occ]').forEach(card => {
+    if (currentOcc === 'all') {
+      card.classList.remove('occ-hidden');
+    } else {
+      card.classList.toggle('occ-hidden', !card.dataset.occ.includes(currentOcc));
+    }
+  });
+}
+</script>
+</body>
+</html>
